@@ -1,0 +1,17 @@
+version: '2'
+services:
+  node:
+    image: node:14.18.2-alpine
+    working_dir: /node
+    command: npm run lint:run
+    volumes:
+      - .:/node
+    networks:
+      - darknet
+
+networks:
+  darknet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.7.0.0/24
