@@ -11,7 +11,7 @@
     "git:pushtags": "git push --follow-tags origin master",
     "lint": "npx eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "lint:run": "npm i && npm i mysql2 && npm run lint",
+    "lint:run": "npm i && npm i --no-save mysql2 && npm run lint",
     "test:unit": "mocha --check-leaks --exit \"src/**/*.test.ts\"",
     "test:integration": "mocha --check-leaks --unhandled-rejections=strict --exit \"test/integration/**/*.test.ts\"",
     "test:performance": "mocha --check-leaks --unhandled-rejections=strict --exit \"test/performance/**/*.test.ts\"",
