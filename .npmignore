@@ -1,0 +1,9 @@
+tsconfig.json
+typings.json
+typings
+.npmignore
+
+node_modules/
+src/
+example/
+*.tgz
