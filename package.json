@@ -1,12 +1,11 @@
 {
   "name": "@pgrecki/wolkenkit-eventstore",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "wolkenkit-eventstore is an open-source eventstore for Node.js that is used by wolkenkit.",
   "scope": "pgrecki",
   "scripts": {
     "build": "mkdir -p ./dist && tsc --outDir ./dist --declaration",
-    "pack": "cp package.json dist/; cp .npmignore dist/; cd dist/ && find . -name \"*.js.map\" -exec rm {} \\; && npm pack && cp *wolkenkit-eventstore*.tgz ../",
-    "publish": "cp package.json dist/; cp .npmignore dist/; cd dist/ && find . -name \"*.js.map\" -exec rm {} \\; && npm publish --access public",
+    "pack": "cp package.json dist/ && cp .npmignore dist/ && cd dist/ && find . -name \"*.js.map\" -exec rm {} \\; && npm publish --access public",
     "git:pulltags": "git fetch --tags",
     "npm:release": "npm run git:pulltags; standard-version",
     "git:pushtags": "git push --follow-tags origin master",
