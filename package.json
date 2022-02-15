@@ -11,8 +11,11 @@
     "git:pushtags": "git push --follow-tags origin master",
     "lint": "npx eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "lint:run": "npm install && npm run lint",
-    "test": "mocha --check-leaks --exit \"src/**/*.test.ts\"",
+    "lint:run": "npm i && npm i mysql2 && npm run lint",
+    "test:unit": "mocha --check-leaks --exit \"src/**/*.test.ts\"",
+    "test:integration": "mocha --check-leaks --unhandled-rejections=strict --exit \"test/integration/**/*.test.ts\"",
+    "test:performance": "mocha --check-leaks --unhandled-rejections=strict --exit \"test/performance/**/*.test.ts\"",
+    "test": "npm i && npm i mysql2 && npm run build && npm run lint && npm run test:unit && npm run test:integration && npm run test:performance",
     "audit": "npm audit --production --registry=https://registry.npmjs.org/ --audit-level=critical"
   },
   "contributors": [
@@ -38,30 +41,42 @@
     }
   ],
   "dependencies": {
-    "async-retry": "1.2.1",
-    "babel-runtime": "6.26.0",
-    "commands-events": "1.0.1",
-    "dsn-parser": "1.0.1",
-    "limit-alphanumeric": "1.0.0",
-    "lodash": "4.17.10",
-    "tarn": "1.1.4",
-    "tedious": "2.3.1",
-    "uuidv4": "1.0.0"
+    "@types/async-retry": "~1.4.3",
+    "@types/events": "~3.0.0",
+    "@types/lodash": "^4.14.178",
+    "@types/node": "17.0.16",
+    "async-retry": "~1.3.3",
+    "commands-events": "~1.0.4",
+    "dsn-parser": "1.0.3",
+    "lodash": "^4.17.21",
+    "mysql2": "^2.3.3",
+    "tarn": "~3.0.2"
   },
   "devDependencies": {
-    "assertthat": "1.0.0",
-    "flaschenpost": "1.1.1",
-    "measure-time": "3.1.1",
-    "processenv": "1.0.0",
-    "roboter": "1.0.2",
-    "shelljs": "0.8.1",
-    "streamtoarray": "1.0.0"
+    "uuid": "^8.3.2",
+    "mocha": "^9.2.0",
+    "assertthat": "~6.4.0",
+    "measure-time": "~5.0.7",
+    "streamtoarray": "~3.0.7",
+    "standard-version": "^9.3.2",
+    "eslint": "^8.2.0",
+    "@types/uuid": "^8.3.4",
+    "@types/mocha-each": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-config-airbnb-typescript": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "typescript": "^4.5.5",
+    "ts-node": "^10.5.0"
   },
   "peerDependencies": {
     "mongodb": "3.0.7",
-    "mysql2": "1.5.3",
+    "mysql2": "~2.3.3",
     "pg": "7.4.1",
-    "pg-query-stream": "1.1.1"
+    "pg-query-stream": "1.1.1",
+    "tedious": "2.3.1"
   },
   "repository": {
     "type": "git",

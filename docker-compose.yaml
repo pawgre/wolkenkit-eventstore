@@ -3,12 +3,33 @@ services:
   node:
     image: node:14.18.2-alpine
     working_dir: /node
-    command: npm run lint:run
+    command: npm run test
+    environment:
+      MARIADB_URL: 'mariadb://user:FKb7ixZUShqRtwsM@mariadb:3306/Test'
     volumes:
       - .:/node
     networks:
       - darknet
-
+    depends_on:
+      - mariadb
+  
+  mariadb:
+    container_name: mariadb
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+    image: mariadb:10.2.10
+    environment:
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'FKb7ixZUShqRtwsM'
+      MYSQL_DATABASE: 'Test'
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    expose:
+      - 3306
+    networks:
+      - darknet
 networks:
   darknet:
     ipam:

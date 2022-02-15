@@ -1,0 +1,99 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": [
+      "@typescript-eslint"
+  ],
+  "rules": {
+      "@typescript-eslint/ban-types": 0,
+      "@typescript-eslint/return-await": 1,
+      "@typescript-eslint/lines-between-class-members": 0,
+      "@typescript-eslint/indent": [
+          2,
+          2,
+          { 
+              "FunctionDeclaration": { "parameters": "first", "body": 1 },
+              "SwitchCase": 1,
+              "ignoredNodes": [
+                  "FunctionExpression > .params[decorators.length > 0]",
+                  "FunctionExpression > .params > :matches(Decorator, :not(:first-child))",
+                  "ClassBody.body > PropertyDefinition[decorators.length > 0] > .key"
+                ]
+              }
+      ],
+      "@typescript-eslint/member-delimiter-style": [2, {
+          "multiline": {
+              "delimiter": "semi",    // "none" or "semi" or "comma"
+              "requireLast": true
+          },
+          "singleline": {
+              "delimiter": "comma",    // "semi" or "comma"
+              "requireLast": false
+          }
+      }],
+      "@typescript-eslint/naming-convention": [
+          2,
+          {
+              "selector": "variable",
+              "format": ["PascalCase", "camelCase", "snake_case", "UPPER_CASE"]
+          }
+      ],
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-empty-interface": 0,
+      "@typescript-eslint/no-inferrable-types": 0,
+      "@typescript-eslint/no-non-null-assertion": 0,
+      "@typescript-eslint/no-shadow": 0,
+      "@typescript-eslint/no-throw-literal": 0,
+      "@typescript-eslint/no-unused-expressions": 0,
+      "arrow-body-style": 0,
+      "arrow-parens": 2,
+      "class-methods-use-this": 1,
+      "consistent-return": 0,
+      "default-case": 1,
+      "default-param-last": 0,
+      "implicit-arrow-linebreak": 0,
+      "import/export": 1,
+      "import/no-cycle": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/no-import-module-exports": 0,
+      "import/order": 0,
+      "import/prefer-default-export": "off",
+      "indent": 0,
+      "max-classes-per-file": 0,
+      "max-len": [2, {
+          "code": 120,
+          "ignorePattern": "^import [^,@]+ from |^export | implements"
+      }],
+      "newline-per-chained-call": 1,
+      "no-async-promise-executor": 1,
+      "no-await-in-loop": 1,
+      "no-bitwise": 1,
+      "no-continue": 1,
+      "no-mixed-operators": 1,
+      "no-nested-ternary": 0,
+      "no-param-reassign": 0,
+      "no-plusplus": 0,
+      "no-prototype-builtins": 0,
+      "no-restricted-globals": 0,
+      "no-restricted-syntax": 0,
+      "no-underscore-dangle": 0,
+      "no-useless-escape": 1,
+      "object-curly-newline": 0,
+      "operator-linebreak": 0,
+      "prefer-destructuring": 0,
+      "prefer-object-spread": 0,
+      "strict-boolean-expressions": 0,
+      "ter-arrow-parens": [0],
+      "variable-name": 0
+  },
+  "extends": [
+      "airbnb/base",
+      "airbnb-typescript/base",
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+  ],
+  "ignorePatterns": ["*.test.ts", "tests"]
+}
