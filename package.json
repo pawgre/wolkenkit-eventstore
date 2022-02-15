@@ -1,8 +1,8 @@
 {
-  "name": "@pawgre/wolkenkit-eventstore",
+  "name": "@pgrecki/wolkenkit-eventstore",
   "version": "2.4.0",
   "description": "wolkenkit-eventstore is an open-source eventstore for Node.js that is used by wolkenkit.",
-  "scope": "pawgre",
+  "scope": "pgrecki",
   "scripts": {
     "build": "tsc --outDir ./dist --declaration",
     "pack": "cp package.json dist; cp .npmignore dist; cd dist && find . -name \"*.js.map\" -exec rm {} \\; && npm pack && cp *wolkenkit-eventstore*.tgz ../",
