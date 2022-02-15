@@ -3,7 +3,7 @@ services:
   node:
     image: node:14.18.2-alpine
     working_dir: /node
-    command: npm run test
+    command: npm run pack
     environment:
       MARIADB_URL: 'mariadb://user:FKb7ixZUShqRtwsM@mariadb:3306/Test'
     volumes:
