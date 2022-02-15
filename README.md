@@ -13,18 +13,14 @@ $ npm install wolkenkit-eventstore
 To use wolkenkit-eventstore first you need to add a reference to your application. You also need to specify which database to use:
 
 ```javascript
-const eventstore = require('wolkenkit-eventstore/postgres');
+import { Eventstore } = from 'wolkenkit-eventstore/mariadb';
 ```
 
 The following table lists all currently supported databases:
 
 Database               | Package
 -----------------------|--------------------
-PostgreSQL             | `wolkenkit-eventstore/postgres`
-SQL Server             | `wolkenkit-eventstore/sqlserver`
 MariaDB                | `wolkenkit-eventstore/mariadb`
-MySQL                  | `wolkenkit-eventstore/mysql`
-MongoDB (experimental) | `wolkenkit-eventstore/mongodb`
 In-memory              | `wolkenkit-eventstore/inmemory`
 
 Once you have created a reference, you need to initialize the instance by running the `initialize` function. Hand over the connection string to your database as well as a namespace:
