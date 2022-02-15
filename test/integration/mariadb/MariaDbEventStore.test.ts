@@ -4,10 +4,8 @@ import { assert } from 'assertthat';
 import { toArray } from 'streamtoarray';
 import { v4 as uuid } from 'uuid';
 import { runAppConcurrently } from '../common/setup';
-import { Eventstore } from '../../../src/mariadb';
+import { MariaDbEventstore as Eventstore, Event } from '../../../src';
 import path = require('path')
-
-const { Event } = require('commands-events');
 
 describe('MariaDB', () => {
   const url =  env.MARIADB_URL;

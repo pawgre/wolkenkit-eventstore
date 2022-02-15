@@ -2,6 +2,7 @@ import { EventEmitter } from 'events';
 import { cloneDeep, flatten } from 'lodash';
 import { PassThrough } from 'stream';
 import { omitByDeep } from '../common';
+import { Event } from '../index';
 import {
   AggregateId,
   Database,
@@ -10,9 +11,6 @@ import {
   ReplayOptions,
   Snapshot,
 } from 'common/types';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { Event } = require('commands-events');
 
 export class Eventstore extends EventEmitter {
   private database: Database;

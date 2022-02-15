@@ -1,6 +1,5 @@
-const assert = require('assertthat');
-const { Event } = require('commands-events');
-import { Eventstore } from '../../../src/inmemory';
+import { assert } from 'assertthat';
+import { InMemoryEventstore as Eventstore , Event} from '../../../src';
 import { measureTime } from 'measure-time';
 import { v4 as uuid } from 'uuid';
 

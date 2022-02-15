@@ -3,7 +3,7 @@ services:
   node:
     image: node:14.18.2-alpine
     working_dir: /node
-    command: npm run pack
+    command: npm run test
     environment:
       MARIADB_URL: 'mariadb://user:FKb7ixZUShqRtwsM@mariadb:3306/Test'
     volumes:
@@ -35,4 +35,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 10.7.0.0/24
+        - subnet: 10.9.0.0/24

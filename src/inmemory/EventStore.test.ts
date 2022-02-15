@@ -1,10 +1,9 @@
 import { EventEmitter } from 'events';
 import { Eventstore } from './Eventstore';
 import { assert } from 'assertthat';
+import { Event } from '../index';
 import { toArray } from 'streamtoarray';
 import { v4 as uuid } from 'uuid';
-
-const { Event } = require('commands-events');
 
 describe('InMemory', () => {
   let eventstore: Eventstore;

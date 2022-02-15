@@ -9,6 +9,7 @@ import { EventEmitter } from 'events';
 import { cloneDeep, flatten } from 'lodash';
 import { PassThrough } from 'stream';
 import { omitByDeep, limitAlpha } from '../common';
+import { Event } from '../index';
 import {
   AggregateId,
   Event as EventType,
@@ -17,7 +18,6 @@ import {
   Snapshot,
 } from 'common/types';
 
-const { Event } = require('commands-events');
 const DsnParser = require('dsn-parser');
 
 export class Eventstore extends EventEmitter {
