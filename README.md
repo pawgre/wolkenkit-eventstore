@@ -21,6 +21,7 @@ The following table lists all currently supported databases:
 Database               | Package
 -----------------------|--------------------
 MariaDB                | `wolkenkit-eventstore/mariadb`
+Mysql                  | `wolkenkit-eventstore/mysql`
 In-memory              | `wolkenkit-eventstore/inmemory`
 
 Once you have created a reference, you need to initialize the instance by running the `initialize` function. Hand over the connection string to your database as well as a namespace:
