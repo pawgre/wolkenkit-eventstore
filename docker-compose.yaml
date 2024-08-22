@@ -30,6 +30,20 @@ services:
       - 3306
     networks:
       - darknet
+  
+  mysql:
+    container_name: mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --log_bin_trust_function_creators=1 --innodb-flush-log-at-trx-commit=0
+    image: mysql:8.0.35
+    environment:
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'FKb7ixZUShqRtwsM'
+      MYSQL_DATABASE: 'Test'
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+    expose:
+      - 3306
+    networks:
+      - darknet
 networks:
   darknet:
     ipam:
