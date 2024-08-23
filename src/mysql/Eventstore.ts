@@ -105,7 +105,7 @@ export class Eventstore extends EventEmitter {
         return;
       }
 
-      const event = Event.wrap(JSON.parse(rows[0].event));
+      const event = Event.wrap(rows[0].event);
 
       event.metadata.position = Number(rows[0].position);
 
@@ -158,7 +158,7 @@ export class Eventstore extends EventEmitter {
     };
 
     const onResult = (row: RowDataPacket) => {
-      const event = Event.wrap(JSON.parse(row.event));
+      const event = Event.wrap(row.event);
 
       event.metadata.position = Number(row.position);
       event.metadata.published = Boolean(row.hasBeenPublished);
@@ -200,7 +200,7 @@ export class Eventstore extends EventEmitter {
     };
 
     const onResult = (row: RowDataPacket) => {
-      const event = Event.wrap(JSON.parse(row.event));
+      const event = Event.wrap(row.event);
 
       event.metadata.position = Number(row.position);
       event.metadata.published = Boolean(row.hasBeenPublished);
@@ -315,7 +315,7 @@ export class Eventstore extends EventEmitter {
 
       return {
         revision: rows[0].revision,
-        state: JSON.parse(rows[0].state),
+        state: rows[0].state,
       };
     } finally {
       connection.release();
@@ -382,7 +382,7 @@ export class Eventstore extends EventEmitter {
     };
 
     const onResult = (row: RowDataPacket) => {
-      const event = Event.wrap(JSON.parse(row.event));
+      const event = Event.wrap(row.event);
 
       event.metadata.position = Number(row.position);
       passThrough.write(event);
