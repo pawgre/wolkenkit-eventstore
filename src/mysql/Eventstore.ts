@@ -253,7 +253,12 @@ export class Eventstore extends EventEmitter {
 
       return events;
     } catch (ex: any) {
-      if (ex.code === 'ER_DUP_ENTRY' && ex.sqlMessage.endsWith('for key \'aggregateId\'')) {
+      if (ex.code === 'ER_DUP_ENTRY' &&
+        (
+          ex.sqlMessage.endsWith(`for key '${this.namespace}_events.aggregateId'`) ||
+          ex.sqlMessage.endsWith('for key \'aggregateId\'')
+        )
+      ) {
         throw new Error('Aggregate id and revision already exist.');
       }
 
