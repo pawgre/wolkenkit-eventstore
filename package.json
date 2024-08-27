@@ -1,6 +1,6 @@
 {
   "name": "@pgrecki/wolkenkit-eventstore",
-  "version": "0.0.9",
+  "version": "0.10.0",
   "description": "wolkenkit-eventstore is an open-source eventstore for Node.js that is used by wolkenkit.",
   "scope": "pgrecki",
   "scripts": {
