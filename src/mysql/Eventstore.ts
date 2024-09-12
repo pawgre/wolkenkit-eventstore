@@ -96,7 +96,7 @@ export class Eventstore extends EventEmitter {
       const [rows] = await connection.execute<RowDataPacket[]>(`
         SELECT event, position
           FROM ${this.namespace}_events
-          WHERE aggregateId = UUID_TO_BIN(?)
+          WHERE aggregateId = UUID_TO_BIN(?, 1)
           ORDER BY revision DESC
           LIMIT 1
         `, [aggregateId]);
@@ -134,7 +134,7 @@ export class Eventstore extends EventEmitter {
       `
       SELECT event, position, hasBeenPublished
         FROM ${this.namespace}_events
-        WHERE aggregateId = UUID_TO_BIN(?)
+        WHERE aggregateId = UUID_TO_BIN(?, 1)
           AND revision >= ?
           AND revision <= ?
         ORDER BY revision`,
@@ -229,7 +229,7 @@ export class Eventstore extends EventEmitter {
     for (let i = 0; i < events.length; i++) {
       const event = events[i];
 
-      placeholders.push('(UUID_TO_BIN(?), ?, ?, ?)');
+      placeholders.push('(UUID_TO_BIN(?, 1), ?, ?, ?)');
       values.push(event.aggregate.id, event.metadata.revision, JSON.stringify(event), event.metadata.published);
     }
 
@@ -289,7 +289,7 @@ export class Eventstore extends EventEmitter {
       await connection.execute(`
         UPDATE ${this.namespace}_events
           SET hasBeenPublished = true
-          WHERE aggregateId = UUID_TO_BIN(?)
+          WHERE aggregateId = UUID_TO_BIN(?, 1)
             AND revision >= ?
             AND revision <= ?
       `, [aggregateId, fromRevision, toRevision]);
@@ -309,7 +309,7 @@ export class Eventstore extends EventEmitter {
       const [rows] = await connection.execute<RowDataPacket[]>(`
         SELECT state, revision
           FROM ${this.namespace}_snapshots
-          WHERE aggregateId = UUID_TO_BIN(?)
+          WHERE aggregateId = UUID_TO_BIN(?, 1)
           ORDER BY revision DESC
           LIMIT 1
       `, [aggregateId]);
@@ -345,7 +345,7 @@ export class Eventstore extends EventEmitter {
       await connection.execute(`
         INSERT IGNORE INTO ${this.namespace}_snapshots
           (aggregateId, revision, state)
-          VALUES (UUID_TO_BIN(?), ?, ?);
+          VALUES (UUID_TO_BIN(?, 1), ?, ?);
       `, [aggregateId, revision, JSON.stringify(state)]);
     } finally {
       connection.release();
