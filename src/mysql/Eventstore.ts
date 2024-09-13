@@ -20,6 +20,13 @@ import {
 
 const DsnParser = require('dsn-parser');
 
+const eventWrap = (event: object | string) => {
+  if (typeof event === 'string') {
+    return Event.wrap(JSON.parse(event));
+  }
+  return Event.wrap(event);
+};
+
 export class Eventstore extends EventEmitter {
   private namespace: string;
   private pool: Pool;
@@ -105,7 +112,7 @@ export class Eventstore extends EventEmitter {
         return;
       }
 
-      const event = Event.wrap(rows[0].event);
+      const event = eventWrap(rows[0].event);
 
       event.metadata.position = Number(rows[0].position);
 
@@ -158,7 +165,7 @@ export class Eventstore extends EventEmitter {
     };
 
     const onResult = (row: RowDataPacket) => {
-      const event = Event.wrap(row.event);
+      const event = eventWrap(row.event);
 
       event.metadata.position = Number(row.position);
       event.metadata.published = Boolean(row.hasBeenPublished);
@@ -200,7 +207,7 @@ export class Eventstore extends EventEmitter {
     };
 
     const onResult = (row: RowDataPacket) => {
-      const event = Event.wrap(row.event);
+      const event = eventWrap(row.event);
 
       event.metadata.position = Number(row.position);
       event.metadata.published = Boolean(row.hasBeenPublished);
@@ -387,7 +394,7 @@ export class Eventstore extends EventEmitter {
     };
 
     const onResult = (row: RowDataPacket) => {
-      const event = Event.wrap(row.event);
+      const event = eventWrap(row.event);
 
       event.metadata.position = Number(row.position);
       passThrough.write(event);
